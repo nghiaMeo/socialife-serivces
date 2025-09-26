@@ -23,32 +23,36 @@ spring:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: YOUR_GOOGLE_CLIENT_ID
-            client-secret: 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
-            scope:
-              - openid
-              - profile
-              - email
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          google:
+#            client-id: YOUR_GOOGLE_CLIENT_ID
+#            client-secret: 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
+#            scope:
+#              - openid
+#              - profile
+#              - email
+#            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+#
+#          apple:
+#            client-id: YOUR_APPLE_CLIENT_ID
+#            client-secret: YOUR_APPLE_CLIENT_SECRET
+#            scope:
+#              - name
+#              - email
+#            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+#        provider:
+#          apple:
+#            authorization-uri: https://appleid.apple.com/auth/authorize
+#            token-uri: https://appleid.apple.com/auth/token
+#            jwk-set-uri: https://appleid.apple.com/auth/keys
+#            user-name-attribute: email
 
-          apple:
-            client-id: YOUR_APPLE_CLIENT_ID
-            client-secret: YOUR_APPLE_CLIENT_SECRET
-            scope:
-              - name
-              - email
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-        provider:
-          apple:
-            authorization-uri: https://appleid.apple.com/auth/authorize
-            token-uri: https://appleid.apple.com/auth/token
-            jwk-set-uri: https://appleid.apple.com/auth/keys
-            user-name-attribute: email
+jwt:
+  secret: +l1svovoRY7LBy+jNvD/Rv+K1o+4kriJBtYH0W/xYCqEaRq12I+BAStZvg/YKoEF
+  expiration: 3600000
 
 eureka:
   client:
