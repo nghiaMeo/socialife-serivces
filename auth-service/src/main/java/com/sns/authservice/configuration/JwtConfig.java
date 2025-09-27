@@ -3,7 +3,6 @@ package com.sns.authservice.configuration;
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.JWSHeader;
 import com.nimbusds.jose.JWSVerifier;
-import com.nimbusds.jose.KeyLengthException;
 import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jose.crypto.MACVerifier;
 import com.nimbusds.jwt.JWTClaimsSet;
@@ -60,17 +59,5 @@ public class JwtConfig {
         }
     }
 
-    public static String getEmailFromToken(String token) throws ParseException {
-        return validateToken(token).getStringClaim("email");
-    }
-
-
-    public static String getRoleFromToken(String token) throws ParseException {
-        return validateToken(token).getStringClaim("role");
-    }
-
-    public static String getAuthProviderFromToken(String token) throws ParseException {
-        return validateToken(token).getStringClaim("authProvider");
-    }
 
 }

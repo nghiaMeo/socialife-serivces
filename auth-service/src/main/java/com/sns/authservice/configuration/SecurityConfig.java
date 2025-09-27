@@ -11,7 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.security.web.SecurityFilterChain;
 
-
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
@@ -19,16 +18,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers("/", "/login", "/logout", "/error",
-                                "/oauth/authorize", "/oauth/token").permitAll()
+                        .requestMatchers(
+                                "/auth/***",
+                                "/error"
+                        )
+                        .permitAll()
                         .anyRequest().authenticated())
-                .oauth2ResourceServer(oauth2 -> oauth2
-                        .jwt(Customizer.withDefaults()))
-                .oauth2Login(
-                        oauth2Login ->
-                                oauth2Login
-                                        .defaultSuccessUrl("/", true)
-                                        .failureUrl("/login?error=true")
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()
+                        )
                 );
 
         return httpSecurity.build();
