@@ -37,7 +37,7 @@ spring:
             redirect-uri: http://localhost:8081/login/oauth2/code/google
 
 jwt:
-  secret: +l1svovoRY7LBy+jNvD/Rv+K1o+4kriJBtYH0W/xYCqEaRq12I+BAStZvg/YKoEF
+  secret: ${JWT_SECRET}
   expiration: 3600000
 
 eureka:
