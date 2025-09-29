@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 import java.util.UUID;
 
 @Data
+@Entity
+@Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
