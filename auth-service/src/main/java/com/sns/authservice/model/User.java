@@ -1,41 +1,46 @@
 package com.sns.authservice.model;
 
 import com.sns.authservice.enums.AuthProvider;
-import com.sns.authservice.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
+import java.util.Set;
 
-@Data
 @Entity
-@Table(name = "users")
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
+@Table(name = "users")
 public class User {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    @NotBlank
     @Column(unique = true, nullable = false)
     private String username;
 
+    @NotBlank
     @Column(unique = true, nullable = false)
-    @Email(message = "")
+    @Email(message = "EMAIL")
     private String email;
 
+    @NotBlank
     private String password;
 
     private AuthProvider authProvider;
 
-    private Role role;
-
-
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
 }

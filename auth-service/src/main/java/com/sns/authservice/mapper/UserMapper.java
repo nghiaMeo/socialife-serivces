@@ -10,7 +10,6 @@ import org.mapstruct.MappingTarget;
 public interface UserMapper {
     User toUser(User user);
 
-    @Mapping(target = "role", ignore = true)
-    User updateUser(User user, @MappingTarget User target);
+
 
 }
